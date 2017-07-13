@@ -3,3 +3,7 @@ npm-debug.log
 
 build/
 config/
+
+# when commiting package.json:
+# cp package-lock.json package-lock.json.irritating_git_diff
+package-lock.json
