@@ -4,7 +4,7 @@ api.handleRequest = async (req, res) => {
   const rb = req.body
 
   // eslint-disable-next-line no-console
-  console.log ("request body: ", rb)
+  console.log ("request body: ", rb, "request_query", req.query)
   res.send ({ "request_body": rb })
 }
 
