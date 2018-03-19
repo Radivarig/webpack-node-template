@@ -1,4 +1,4 @@
-process.env.NODE_ENV = 'test'
+process.env.NODE_ENV = "test"
 
 import chai, { expect } from "chai"
 import chaiHttp from "chai-http"
@@ -6,7 +6,7 @@ import app from "../src/app.js"
 
 chai.use (chaiHttp)
 
-const knex = require('../db/knex.js')
+const knex = require("../db/knex.js")
 
 // reset databases before and after each test
 beforeEach(async () =>
@@ -16,7 +16,7 @@ beforeEach(async () =>
 )
 afterEach(async () => await knex.migrate.rollback())
 
-describe('API', () => {
+describe("API", () => {
 
   it ("POST request to / should return 200", async () => {
     const res = await chai.request (app.listen ())
@@ -26,8 +26,8 @@ describe('API', () => {
   })
 
 
-  describe('setData', () => {
-    it('should insert passed object to table1', async () => {
+  describe("setData", () => {
+    it("should insert passed object to table1", async () => {
 
       const toInsert = {
         text: "custom text",
@@ -41,7 +41,7 @@ describe('API', () => {
         .where ({text: toInsert.text})
         )[0]
    
-      expect (data).to.be.an('object')
+      expect (data).to.be.an("object")
 
       // json equality
       expect (JSON.stringify(data)).to.equal(JSON.stringify(toInsert.data))
