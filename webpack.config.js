@@ -7,29 +7,41 @@ fs.readdirSync ("node_modules")
   .forEach ((mod) => {nodeModules[mod] = `commonjs ${mod}`})
 
 module.exports = {
-  "entry": "./src/server.js",
-  "target": "node",
-  "output": {
-    "path": path.join (__dirname, "build"),
-    "filename": "backend.js",
+  "entry": {
+    main: path.resolve (__dirname, "src", "server.js"),
   },
+
+  "target": "node",
+
+  "output": {
+    "filename": "[name].js",
+  },
+
   "devtool": "source-map",
-  "module": {
-    "loaders": [
+
+  module: {
+    rules: [
       {
-        "test": /\.js?$/,
-        "exclude": /node_modules/,
-        "use": [
-          "babel-loader",
+        test: /\.jsx?$/,
+        exclude: [/node_modules/],
+        use: {
+          loader: "babel-loader",
+        },
+      },
+
+      {
+        enforce: "pre",
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        use: [
           {
-            "loader": "eslint-loader",
-            "options": {
-              "fix": true,
-            },
+            loader: "eslint-loader",
+            options: { fix: true }
           },
         ],
       },
     ],
   },
+
   "externals": nodeModules,
 }
