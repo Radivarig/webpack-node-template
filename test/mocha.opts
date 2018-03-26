@@ -1,2 +1,4 @@
 --require babel-polyfill
 --require babel-register
+--bail
+--timeout=0
